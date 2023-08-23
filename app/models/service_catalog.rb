@@ -1,0 +1,2 @@
+class ServiceCatalog < ApplicationRecord
+end

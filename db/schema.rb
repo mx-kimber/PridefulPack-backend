@@ -10,15 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_23_070245) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_034400) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "service_catalogs", force: :cascade do |t|
+  create_table "service_offerings", force: :cascade do |t|
     t.string "service"
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "duration"
+    t.text "included"
+    t.string "extra_service"
+    t.integer "extra_service_price"
   end
 
 end

@@ -1,11 +1,11 @@
-Review.create(
-  reviewer_id: 2,
-  rating: 5,
-  comment: "great pet sitter!"
+AdminComment.create(
+  review_id: 1,
+  user_id: 1,
+  admin_comment: "Thank you!! I'm going to miss that baby!"
 )
 
-Review.create(
-  reviewer_id: 1,
-  rating: 5,
-  comment: "Best experience for my pup!"
+AdminComment.create(
+  review_id: 2,
+  user_id: 1,
+  admin_comment: "Thank you so much! We had so much fun!"
 )

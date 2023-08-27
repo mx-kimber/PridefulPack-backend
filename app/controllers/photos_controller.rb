@@ -18,4 +18,14 @@ class PhotosController < ApplicationController
     @photo = Photo.find_by(id: params[:id])
     render :show
   end
+
+  def update
+    @photo = Photo.find_by(id: params[:id])
+    @photo.update(
+      pet_photo: params[:pet_photo] || @photo.pet_photo,
+      pet_name: params[:pet_name] || @photo.pet_name,
+      caption: params[:caption] || @photo.caption,
+    )
+    render :show
+  end
 end

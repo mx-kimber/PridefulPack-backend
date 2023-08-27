@@ -15,4 +15,12 @@ class AdminCommentsControllerTest < ActionDispatch::IntegrationTest
       assert_response 200
     end
   end
+
+  test "show" do
+    get "/admin_comments/#{AdminComment.first.id}.json"
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal ["id", "review_id", "user_id", "admin_comment", "created_at", "updated_at"], data.keys
+  end
 end

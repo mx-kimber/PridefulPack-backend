@@ -13,4 +13,9 @@ class AdminCommentsController < ApplicationController
     )
     render :show
   end
+
+  def show
+    @admin_comment = AdminComment.find_by(id: params[:id])
+    render :show
+  end
 end

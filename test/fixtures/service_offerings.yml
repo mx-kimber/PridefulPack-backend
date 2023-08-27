@@ -5,14 +5,12 @@ one:
   price: 1
   duration: MyDuration
   included: MyIncluded
-  extra_service: MyExtraService
-  extra_service_price: 2
+  extra_service: ExtraService
+      
 
 two:
   service: MyString
   price: 1
   duration: AnotherDuration
   included: AnotherIncluded
-  extra_service: AnotherExtraService
-  extra_service_price: 3
-
+  extra_service: AnotherExtraService2

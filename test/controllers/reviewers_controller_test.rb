@@ -23,4 +23,13 @@ class ReviewersControllerTest < ActionDispatch::IntegrationTest
     data = JSON.parse(response.body)
     assert_equal ["id", "source", "uid", "email", "name", "created_at", "updated_at"], data.keys
   end
+
+  test "update" do
+    reviewer = Reviewer.first
+    patch "/reviewers/#{reviewer.id}.json", params: { source: "Updated source" }
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal "Updated source", data["source"]
+  end
 end

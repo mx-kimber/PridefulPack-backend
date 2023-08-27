@@ -20,4 +20,15 @@ class ReviewersController < ApplicationController
     @reviewer = Reviewer.find_by(id: params[:id])
     render :show
   end
+
+  def update
+    @reviewer = Reviewer.find_by(id: params[:id])
+    @reviewer.update(
+      source: params[:source] || @reviewer.source,
+      uid: params[:uid] || @reviewer.uid,
+      email: params[:email] || @reviewer.email,
+      name: params[:name] || @reviewer.name,
+    )
+    render :show
+  end
 end

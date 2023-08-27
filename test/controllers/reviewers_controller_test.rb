@@ -15,4 +15,12 @@ class ReviewersControllerTest < ActionDispatch::IntegrationTest
       assert_response 200
     end
   end
+
+  test "show" do
+    get "/reviewers/#{Reviewer.first.id}.json"
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal ["id", "source", "uid", "email", "name", "created_at", "updated_at"], data.keys
+  end
 end

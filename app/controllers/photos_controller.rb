@@ -13,4 +13,9 @@ class PhotosController < ApplicationController
     )
     render :show
   end
+
+  def show
+    @photo = Photo.find_by(id: params[:id])
+    render :show
+  end
 end

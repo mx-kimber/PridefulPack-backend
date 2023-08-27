@@ -18,4 +18,14 @@ class AdminCommentsController < ApplicationController
     @admin_comment = AdminComment.find_by(id: params[:id])
     render :show
   end
+
+  def update
+    @admin_comment = AdminComment.find_by(id: params[:id])
+    @admin_comment.update(
+      review_id: params[:review_id] || @admin_comment.review_id,
+      user_id: params[:user_id] || @admin_comment.user_id,
+      admin_comment: params[:admin_comment] || @admin_comment.admin_comment,
+    )
+    render :show
+  end
 end

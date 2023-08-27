@@ -13,4 +13,9 @@ class ReviewsController < ApplicationController
     )
     render :show
   end
+
+  def show
+    @review = Review.find_by(id: params[:id])
+    render :show
+  end
 end

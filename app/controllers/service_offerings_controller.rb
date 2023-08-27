@@ -9,8 +9,8 @@ class ServiceOfferingsController < ApplicationController
 
     @service_offering = ServiceOffering.create(
       service: params[:service],
-      duration: params[:duration],
       price: params[:price],
+      duration: params[:duration],
       included: params[:included],
       extra_service: params[:extra_service]
     )
@@ -20,6 +20,9 @@ class ServiceOfferingsController < ApplicationController
     render :show
   end
   
-  
+  def show
+    @service_offering = ServiceOffering.find_by(id: params[:id])
+    render :show
+  end
   
 end

@@ -11,7 +11,7 @@ class AdminCommentsControllerTest < ActionDispatch::IntegrationTest
 
   test "create" do
     assert_difference "AdminComment.count", 1 do
-      post "/admin_comments.json", params: { name: "lake", width: 800, height: 600 }
+      post "/admin_comments.json", params: { review_id: 3, user_id: 1, admin_comment: "Thank you so much, you're the best!"}
       assert_response 200
     end
   end

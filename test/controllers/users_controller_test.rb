@@ -24,4 +24,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       assert_response 200
     end
   end
+
+  test "show" do
+    get "/users/#{User.first.id}.json"
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal ["id", "first_name", "last_name", "email", "phone_number", "profile_photo", "admin_permission", "bio", "created_at", "updated_at"], data.keys
+  end
 end

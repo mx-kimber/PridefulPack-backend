@@ -1,1 +1,1 @@
-json.partial! "reviewers/viewer", reviewer: @reviewer
+json.partial! "reviewers/reviewer", reviewer: @reviewer

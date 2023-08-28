@@ -2,11 +2,11 @@ require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   test "index" do
-    get "/photos.json"
+    get "/users.json"
     assert_response 200
 
     data = JSON.parse(response.body)
-    assert_equal Photo.count, data.length
+    assert_equal User.count, data.length
   end
 
   test "create" do
@@ -31,5 +31,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     data = JSON.parse(response.body)
     assert_equal ["id", "first_name", "last_name", "email", "phone_number", "profile_photo", "admin_permission", "bio", "created_at", "updated_at"], data.keys
+  end
+
+  test "update" do
+    user = User.first
+    patch "/users/#{user.id}.json", params: { first_name: "Updated name" }
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal "Updated name", data["first_name"]
   end
 end

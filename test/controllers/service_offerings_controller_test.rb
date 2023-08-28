@@ -34,4 +34,12 @@ class ServiceOfferingsControllerTest < ActionDispatch::IntegrationTest
     assert_equal ["id", "service", "price", "duration", "included", "extra_service", "created_at", "updated_at",], data.keys
   end
 
+  test "update" do
+    service_offering = ServiceOffering.first
+    patch "/service_offerings/#{service_offering.id}.json", params: { service: "Updated service" }
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal "Updated service", data["service"]
+  end
 end

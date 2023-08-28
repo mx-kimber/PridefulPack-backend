@@ -36,5 +36,11 @@ class ServiceOfferingsController < ApplicationController
     )
     render :show
   end
+
+  def destroy
+    @service_offering = ServiceOffering.find_by(id: params[:id])
+    @service_offering.destroy
+    render json: { message: "service_offering destroyed successfully" }
+  end
   
 end

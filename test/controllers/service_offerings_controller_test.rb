@@ -42,4 +42,11 @@ class ServiceOfferingsControllerTest < ActionDispatch::IntegrationTest
     data = JSON.parse(response.body)
     assert_equal "Updated service", data["service"]
   end
+
+  test "destroy" do
+    assert_difference "ServiceOffering.count", -1 do
+      delete "/service_offerings/#{ServiceOffering.first.id}.json"
+      assert_response 200
+    end
+  end
 end

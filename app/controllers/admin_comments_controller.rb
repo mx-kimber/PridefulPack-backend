@@ -28,4 +28,10 @@ class AdminCommentsController < ApplicationController
     )
     render :show
   end
+
+  def destroy
+    @admin_comment = AdminComment.find_by(id: params[:id])
+    @admin_comment.destroy
+    render json: { message: "admin comment destroyed successfully" }
+  end
 end

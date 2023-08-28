@@ -32,4 +32,11 @@ class AdminCommentsControllerTest < ActionDispatch::IntegrationTest
     data = JSON.parse(response.body)
     assert_equal "Updated comment", data["comment"]
   end
+
+  test "destroy" do
+    assert_difference "AdminComment.count", -1 do
+      delete "/admin_comments/#{AdminComment.first.id}.json"
+      assert_response 200
+    end
+  end
 end

@@ -9,7 +9,7 @@ class AdminCommentsController < ApplicationController
     @admin_comment = AdminComment.create(
      review_id: params[:review_id],
       user_id: params[:user_id],
-      admin_comment: params[:admin_comment],
+      comment: params[:comment],
     )
     render :show
   end
@@ -24,7 +24,7 @@ class AdminCommentsController < ApplicationController
     @admin_comment.update(
       review_id: params[:review_id] || @admin_comment.review_id,
       user_id: params[:user_id] || @admin_comment.user_id,
-      admin_comment: params[:admin_comment] || @admin_comment.admin_comment,
+      comment: params[:comment] || @admin_comment.comment,
     )
     render :show
   end

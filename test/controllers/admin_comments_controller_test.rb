@@ -11,7 +11,7 @@ class AdminCommentsControllerTest < ActionDispatch::IntegrationTest
 
   test "create" do
     assert_difference "AdminComment.count", 1 do
-      post "/admin_comments.json", params: { review_id: 3, user_id: 1, admin_comment: "Thank you so much, you're the best!"}
+      post "/admin_comments.json", params: { review_id: 3, user_id: 1, comment: "Thank you so much, you're the best!"}
       assert_response 200
     end
   end
@@ -21,15 +21,15 @@ class AdminCommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
 
     data = JSON.parse(response.body)
-    assert_equal ["id", "review_id", "user_id", "admin_comment", "created_at", "updated_at"], data.keys
+    assert_equal ["id", "review_id", "user_id", "comment", "created_at", "updated_at"], data.keys
   end
 
   test "update" do
-    admin_comment= AdminComment.first
-    patch "/admin_comments/#{admin_comment.id}.json", params: { admin_comment: "Updated comment" }
+    comment= AdminComment.first
+    patch "/admin_comments/#{comment.id}.json", params: { comment: "Updated comment" }
     assert_response 200
 
     data = JSON.parse(response.body)
-    assert_equal "Updated comment", data["admin_comment"]
+    assert_equal "Updated comment", data["comment"]
   end
 end

@@ -18,4 +18,14 @@ class ReviewsController < ApplicationController
     @review = Review.find_by(id: params[:id])
     render :show
   end
+
+  def update
+    @review = Review.find_by(id: params[:id])
+    @review.update(
+      reviewer_id: params[:reviewer_id] || @review.reviewer_id,
+      rating: params[:rating] || @review.rating,
+      comment: params[:comment] || @review.comment,
+    )
+    render :show
+  end
 end

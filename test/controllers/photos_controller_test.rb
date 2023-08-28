@@ -32,4 +32,11 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
     data = JSON.parse(response.body)
     assert_equal "Updated pet name", data["pet_name"]
   end
+
+  test "destroy" do
+    assert_difference "Photo.count", -1 do
+      delete "/photos/#{Photo.first.id}.json"
+      assert_response 200
+    end
+  end
 end

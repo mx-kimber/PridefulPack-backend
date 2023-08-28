@@ -28,4 +28,10 @@ class PhotosController < ApplicationController
     )
     render :show
   end
+
+  def destroy
+    @photo = Photo.find_by(id: params[:id])
+    @photo.destroy
+    render json: { message: "Photo destroyed successfully" }
+  end
 end

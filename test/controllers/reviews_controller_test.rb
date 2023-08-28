@@ -11,9 +11,7 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
 
   test "create" do
     assert_difference "Review.count", 1 do
-      post "/reviews.json", params: { reviewer_id: 4, 
-        rating: 4, 
-        comment: "something good here"}
+      post "/reviews.json", params: { reviewer_id: 3, rating: 5, comment: "MyText" }
       assert_response 200
     end
   end
@@ -23,7 +21,7 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
 
     data = JSON.parse(response.body)
-    assert_equal ["id", "reviewer_id", "rating", "comment", "created_at", "updated_at"], data.keys
+    assert_equal ["id", "created_at", "rating", "comment"], data.keys
   end
 
   test "update" do

@@ -21,7 +21,7 @@ class AdminCommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
 
     data = JSON.parse(response.body)
-    assert_equal ["id", "review_id", "user_id", "comment", "created_at", "updated_at"], data.keys
+    assert_equal ["id", "user_id", "review_id", "comment", "created_at"], data.keys
   end
 
   test "update" do

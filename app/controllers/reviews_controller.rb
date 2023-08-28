@@ -28,4 +28,10 @@ class ReviewsController < ApplicationController
     )
     render :show
   end
+
+  def destroy
+    @review = Review.find_by(id: params[:id])
+    @review.destroy
+    render json: { message: "review destroyed successfully" }
+  end
 end

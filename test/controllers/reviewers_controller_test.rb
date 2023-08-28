@@ -32,4 +32,11 @@ class ReviewersControllerTest < ActionDispatch::IntegrationTest
     data = JSON.parse(response.body)
     assert_equal "Updated source", data["source"]
   end
+
+  test "destroy" do
+    assert_difference "Reviewer.count", -1 do
+      delete "/reviewers/#{Reviewer.first.id}.json"
+      assert_response 200
+    end
+  end
 end

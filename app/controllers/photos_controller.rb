@@ -6,11 +6,7 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.create(
-      pet_photo: params[:pet_photo],
-      pet_name: params[:pet_name],
-      caption: params[:caption],
-    )
+    @photo = Photo.create(photo_params)
     render :show
   end
 
@@ -21,11 +17,7 @@ class PhotosController < ApplicationController
 
   def update
     @photo = Photo.find_by(id: params[:id])
-    @photo.update(
-      pet_photo: params[:pet_photo] || @photo.pet_photo,
-      pet_name: params[:pet_name] || @photo.pet_name,
-      caption: params[:caption] || @photo.caption,
-    )
+    @photo.update(photo_params)
     render :show
   end
 
@@ -33,5 +25,11 @@ class PhotosController < ApplicationController
     @photo = Photo.find_by(id: params[:id])
     @photo.destroy
     render json: { message: "Photo destroyed successfully" }
+  end
+
+  private
+
+  def photo_params
+    params.permit(:pet_photo, :pet_name, :caption)
   end
 end

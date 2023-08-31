@@ -6,11 +6,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.create(
-      reviewer_id: params[:reviewer_id],
-      rating: params[:rating],
-      comment: params[:comment],
-    )
+    @review = Review.create(review_params)
     render :show
   end
 
@@ -21,11 +17,7 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find_by(id: params[:id])
-    @review.update(
-      reviewer_id: params[:reviewer_id] || @review.reviewer_id,
-      rating: params[:rating] || @review.rating,
-      comment: params[:comment] || @review.comment,
-    )
+    @review.update(review_params)
     render :show
   end
 
@@ -33,5 +25,11 @@ class ReviewsController < ApplicationController
     @review = Review.find_by(id: params[:id])
     @review.destroy
     render json: { message: "review destroyed successfully" }
+  end
+
+  private
+
+  def review_params
+    params.permit(:reviewer_id, :rating, :comment)
   end
 end

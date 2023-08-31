@@ -1,18 +1,11 @@
 class ReviewersController < ApplicationController
-
-
   def index
     @reviewers = Reviewer.all
     render :index
   end
 
   def create
-    @reviewer = Reviewer.create(
-      source: params[:source],
-      uid: params[:uid],
-      email: params[:email],
-      name: params[:name],
-    )
+    @reviewer = Reviewer.create(reviewer_params)
     render :show
   end
 
@@ -23,12 +16,7 @@ class ReviewersController < ApplicationController
 
   def update
     @reviewer = Reviewer.find_by(id: params[:id])
-    @reviewer.update(
-      source: params[:source] || @reviewer.source,
-      uid: params[:uid] || @reviewer.uid,
-      email: params[:email] || @reviewer.email,
-      name: params[:name] || @reviewer.name,
-    )
+    @reviewer.update(reviewer_params)
     render :show
   end
 
@@ -36,5 +24,11 @@ class ReviewersController < ApplicationController
     @reviewer = Reviewer.find_by(id: params[:id])
     @reviewer.destroy
     render json: { message: "reviewer destroyed successfully" }
+  end
+
+  private
+
+  def reviewer_params
+    params.permit(:source, :uid, :email, :name)
   end
 end

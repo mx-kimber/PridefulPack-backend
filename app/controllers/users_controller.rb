@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :update, :destroy]
 
   def index
     @users = User.all
@@ -6,44 +7,48 @@ class UsersController < ApplicationController
   end
 
   def create
+    @user = User.new(user_params)
 
-    @user = User.create(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      email: params[:email],
-      phone_number: params[:phone_number],
-      password_digest: params[:password_digest],
-      admin_permission: params[:admin_permission],
-      bio: params[:bio],
-    )
-
-    @user.save
-    
-    render :show
+    if @user.save
+      render :show
+    else
+      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def show
-    @user = User.find_by(id: params[:id])
     render :show
   end
 
   def update
-    @user = User.find_by(id: params[:id])
-    @user.update(
-      first_name: params[:first_name] || @user.first_name,
-      last_name: params[:last_name] || @user.last_name,
-      email: params[:email] || @user.email,
-      phone_number: params[:phone_number] || @user.phone_number,
-      password_digest: params[:password_digest] || @user.password_digest,
-      admin_permission: params[:admin_permission] || @user.admin_permission,
-      bio: params[:bio] || @user.bio,
-    )
-    render :show
+    if @user.update(user_params)
+      render :show
+    else
+      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    @user = User.find_by(id: params[:id])
     @user.destroy
-    render json: { message: "user destroyed successfully" }
+    render json: { message: "User destroyed successfully" }
+  end
+
+  private
+
+  def set_user
+    @user = User.find_by(id: params[:id])
+    render json: { error: "User not found" }, status: :not_found unless @user
+  end
+
+  def user_params
+    params.permit(
+      :first_name,
+      :last_name,
+      :email,
+      :phone_number,
+      :password_digest,
+      :admin_permission,
+      :bio
+    )
   end
 end

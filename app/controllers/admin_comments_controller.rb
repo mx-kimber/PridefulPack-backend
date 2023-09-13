@@ -1,4 +1,6 @@
 class AdminCommentsController < ApplicationController
+  before_action :authenticate_user, except: [:index, :show]
+
   def index
     @admin_comments = AdminComment.all
     render :index

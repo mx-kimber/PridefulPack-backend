@@ -24,4 +24,10 @@ class ApplicationController < ActionController::Base
       render json: { error: "Please log in or sign up" }, status: :unauthorized
     end
   end
+
+  def authorize_admin
+    unless current_user && current_user.admin_permission
+      render json: { error: 'Permission denied' }, status: :forbidden
+    end
+  end
 end

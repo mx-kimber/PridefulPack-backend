@@ -1,11 +1,12 @@
 class ServiceOfferingsController < ApplicationController
+  before_action :authenticate_user, except: [:index, :show]
+
   def index
     @service_offerings = ServiceOffering.all
     render :index
   end
 
   def create
-    # note to self: create a table to have more than one extra_service
     @service_offering = ServiceOffering.create(service_offering_params)
     @service_offering.save
     

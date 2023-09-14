@@ -4,19 +4,19 @@ json.updated_at user.updated_at.strftime('%m-%d-%Y %I:%M %p %Z')
 
 if user.photos.present?
   json.photos user.photos do |photo|
-    json.extract! photo, :id, :pet_photo, :pet_name, :caption, :user_id
+    json.extract! photo, :id, :pet_photo, :pet_name, :caption
   end
 end
 
 if user.service_offerings.present?
   json.service_offerings user.service_offerings do |service_offering|
-    json.extract! service_offering, :id, :service, :price, :duration, :included, :extra_service, :user_id
+    json.extract! service_offering, :id, :service, :price, :duration, :included, :extra_service
   end
 end
 
 if user.admin_comments.present?
   json.admin_comments user.admin_comments do |admin_comment|
-    json.extract! admin_comment, :id, :user_id, :review_id, :comment
+    json.extract! admin_comment, :id, :review_id, :comment
     
     if admin_comment.review.present?
       json.review do

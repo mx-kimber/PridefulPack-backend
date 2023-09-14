@@ -48,7 +48,7 @@ class PhotosController < ApplicationController
     render json: { error: 'Photo not found' }, status: :not_found unless @photo
   end
 
-  def render_permission_denied
-    render json: { error: 'Permission denied' }, status: :forbidden
-  end
+  # def render_permission_denied
+  #   render json: { error: 'Permission denied' }, status: :forbidden
+  # end
 end

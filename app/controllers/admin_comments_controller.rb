@@ -56,7 +56,7 @@ class AdminCommentsController < ApplicationController
     @admin_comment.user == current_user || current_user.admin_permission
   end
 
-  def render_permission_denied
-    render json: { error: 'Permission denied' }, status: :forbidden
-  end
+  # def render_permission_denied
+  #   render json: { error: 'Permission denied' }, status: :forbidden
+  # end
 end

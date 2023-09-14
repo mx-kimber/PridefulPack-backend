@@ -30,4 +30,9 @@ class ApplicationController < ActionController::Base
       render json: { error: 'Permission denied' }, status: :forbidden
     end
   end
+
+  def render_permission_denied
+    render json: { error: 'Permission denied' }, status: :forbidden
+  end
+
 end

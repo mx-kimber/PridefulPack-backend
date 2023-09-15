@@ -10,7 +10,7 @@ end
 
 if admin_comment.review.present?
   json.review do
-    json.extract! admin_comment.review, :comment, :created_at
+    json.extract! admin_comment.review, :rating, :comment, :created_at
 
     json.reviewer do
       json.extract! admin_comment.review.reviewer, :name, :email if admin_comment.review.reviewer.present?

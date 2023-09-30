@@ -48,7 +48,4 @@ class ServiceOfferingsController < ApplicationController
     render json: { error: 'Service offering not found' }, status: :not_found unless @service_offering
   end
 
-  # def render_permission_denied
-  #   render json: { error: 'Permission denied' }, status: :forbidden
-  # end
 end

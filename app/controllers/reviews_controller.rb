@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user, only: [:destroy]
+  before_action :authenticate_user, only: [:destroy, :update]
   
   def index
     @reviews = Review.all

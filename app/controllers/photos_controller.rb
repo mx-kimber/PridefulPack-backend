@@ -3,10 +3,10 @@ class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :update, :destroy]
 
   def index
-    @photos = Photo.all
+    @photos = Photo.order(created_at: :desc)
     render :index
   end
-
+  
   def create
     @photo = current_user.photos.build(photo_params)
     if @photo.save

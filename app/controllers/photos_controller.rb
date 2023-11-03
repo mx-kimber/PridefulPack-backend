@@ -6,9 +6,9 @@ class PhotosController < ApplicationController
     @photos = Photo.order(created_at: :desc)
     render :index
   end
-  
+
   def create
-    @photo = current_user.photos.build(photo_params)
+    @photo = Photo.new(photo_params)
     if @photo.save
       render :show
     else
@@ -21,7 +21,7 @@ class PhotosController < ApplicationController
   end
 
   def update
-    if @photo.user_id == current_user.id && @photo.update(photo_params)
+    if @photo.update(photo_params)
       render :show
     else
       render json: { errors: @photo.errors.full_messages }, status: :unprocessable_entity
@@ -29,26 +29,18 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    if @photo.user_id == current_user.id
-      @photo.destroy
-      render json: { message: "Photo destroyed successfully" }
-    else
-      render_permission_denied
-    end
+    @photo.destroy
+    render json: { message: "Photo destroyed successfully" }
   end
 
   private
 
   def photo_params
-    params.permit(:user_id, :pet_photo, :pet_name, :caption)
+    params.permit(:pet_photo, :pet_name, :caption)
   end
 
   def set_photo
     @photo = Photo.find_by(id: params[:id])
     render json: { error: 'Photo not found' }, status: :not_found unless @photo
   end
-
-  # def render_permission_denied
-  #   render json: { error: 'Permission denied' }, status: :forbidden
-  # end
 end

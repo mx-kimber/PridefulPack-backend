@@ -116,6 +116,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsonapi-serializer (2.2.0)
+      activesupport (>= 4.2)
     jwt (2.7.1)
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
@@ -242,6 +244,7 @@ DEPENDENCIES
   http
   importmap-rails
   jbuilder
+  jsonapi-serializer (~> 2.2)
   jwt
   pg (~> 1.1)
   puma (~> 5.0)

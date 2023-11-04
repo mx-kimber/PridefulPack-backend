@@ -75,3 +75,4 @@ gem 'http'
 gem 'rack-cors'
 gem "bcrypt", "~> 3.1.7"
 gem 'jwt'
+gem "jsonapi-serializer", "~> 2.2"

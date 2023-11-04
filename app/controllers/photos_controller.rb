@@ -30,7 +30,7 @@ class PhotosController < ApplicationController
 
   def latest
     @photo = Photo.last
-    render json: @photo
+    render json: PhotoSerializer.new(@photo).serializable_hash[:data][:attributes]
   end
 
   def destroy

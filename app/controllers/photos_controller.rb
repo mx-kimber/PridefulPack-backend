@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :authenticate_user, except: [:index, :show]
+  # before_action :authenticate_user, except: [:index, :show]
   before_action :set_photo, only: [:show, :update, :destroy]
 
   def index
@@ -28,6 +28,11 @@ class PhotosController < ApplicationController
     end
   end
 
+  def latest
+    @photo = Photo.last
+    render json: @photo
+  end
+
   def destroy
     @photo.destroy
     render json: { message: "Photo destroyed successfully" }
@@ -36,9 +41,9 @@ class PhotosController < ApplicationController
   private
 
   def photo_params
-    params.permit(:pet_photo, :pet_name, :caption)
+    params.require(:photo).permit(:pet_name, :caption, :image, :pet_photo)
   end
-
+  
   def set_photo
     @photo = Photo.find_by(id: params[:id])
     render json: { error: 'Photo not found' }, status: :not_found unless @photo

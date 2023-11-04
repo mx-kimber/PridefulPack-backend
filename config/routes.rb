@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :service_offerings
   resources :users
   resources :photos
+  get "latest", to: 'photos#latest'
   resources :reviewers
   resources :reviews
   resources :admin_comments

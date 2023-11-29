@@ -42,6 +42,15 @@ class UsersController < ApplicationController
     render json: { message: "User destroyed successfully" }
   end
 
+
+  def avatar_upload
+    file = params[:file]
+
+    cloudinary_response = Cloudinary::Uploader.upload(file.path, upload_preset: ENV['CLOUDINARY_UPLOAD_PRESET'])
+
+    render json: cloudinary_response
+  end
+
   private
 
   def user_params
@@ -54,7 +63,8 @@ class UsersController < ApplicationController
       :password_confirmation,
       :profile_photo,
       :admin_permission,
-      :bio
+      :bio,
+      :file,
     )
   end
 end

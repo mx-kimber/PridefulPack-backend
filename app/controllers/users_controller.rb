@@ -47,7 +47,12 @@ class UsersController < ApplicationController
     file = params[:file]
 
     cloudinary_response = Cloudinary::Uploader.upload(file.path, upload_preset: ENV['CLOUDINARY_UPLOAD_PRESET'])
-
+  
+    user = current_user
+  
+    user.profile_photo = cloudinary_response['public_id']
+    user.save
+  
     render json: cloudinary_response
   end
 

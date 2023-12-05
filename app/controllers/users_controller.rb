@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   # before_action :authorize_admin, only: [:create, :update, :destroy]
 
   def index
-    @users = User.all
+    @users = User.order(created_at: :asc)
+    @users = @users.sort_by { |user| user == current_user ? -1 : 1 }
     render :index
   end
 

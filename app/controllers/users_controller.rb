@@ -71,6 +71,12 @@ class UsersController < ApplicationController
       :admin_permission,
       :bio,
       :file,
+      :street_address,
+      :city,
+      :state,
+      :zip_code,
+      :address_details
     )
   end
+  
 end

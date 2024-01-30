@@ -14,6 +14,18 @@ if user.service_offerings.present?
   end
 end
 
+if user.social_media_accounts.present?
+  json.social_media_accounts user.social_media_accounts do |social_media_account|
+    json.extract! social_media_account, :id, :account_handle, :account_URL
+
+    if social_media_account.social_media_category.present?
+      json.social_media_category do
+        json.extract! social_media_account.social_media_category, :id, :platform, :platform_logo
+      end
+    end
+  end
+end
+
 if user.admin_comments.present?
   json.admin_comments user.admin_comments do |admin_comment|
     json.extract! admin_comment, :id, :review_id, :comment

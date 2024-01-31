@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_30_015002) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_30_024138) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,7 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_015002) do
   end
 
   create_table "social_media_accounts", force: :cascade do |t|
-    t.string "user_id"
+    t.integer "user_id"
     t.string "account_handle"
     t.string "account_URL"
     t.bigint "social_media_category_id"
